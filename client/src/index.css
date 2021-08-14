@@ -1,0 +1,15 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: lightsteelblue;
+}
+
+.notification {
+  color: darkgreen;
+  background: darkseagreen;
+}
+
+.error {
+  color: darkred;
+  background: lightcoral;
+}
