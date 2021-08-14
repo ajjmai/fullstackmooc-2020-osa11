@@ -12,7 +12,8 @@
     "lint:ui": "cd client && yarn lint",
     "start:test": "NODE_ENV=test node index.js",
     "test:e2e": "cd client && cypress run",
-    "build:ui": "rm -rf build && cd client && yarn run build --prod && cp -r build ../"
+    "build:ui": "rm -rf build && cd client && yarn run build --prod && cp -r build ../",
+    "logs:prod": "heroku logs --tail"
   },
   "author": "Aija Valleala",
   "license": "MIT",
