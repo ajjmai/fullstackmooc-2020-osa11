@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: '12.x'
       - name: install
-        run: yarn install
+        run: yarn install && yarn install:ui
       - name: lint
         run: yarn lint
       - name: test
