@@ -19,9 +19,7 @@ const Blog = ({ blog, likeBlog, loggedInUserId, removeBlog, addComment }) => {
     removeBlog(blog)
   }
 
-  const own = blog.user.id
-    ? loggedInUserId === blog.user.id
-    : loggedInUserId === blog.user
+  const own = blog.user.id ? loggedInUserId === blog.user.id : loggedInUserId === blog.user
 
   const creator = useMemo(() => blog.user.name, [])
 
@@ -32,18 +30,19 @@ const Blog = ({ blog, likeBlog, loggedInUserId, removeBlog, addComment }) => {
       </SubTitle1>
       <a href={blog.url}>{blog.url}</a>
       <p>
-        likes {blog.likes}{' '}
-        <InlineButton onClick={handleLikes}>like</InlineButton>
+        likes {blog.likes} <InlineButton onClick={handleLikes}>like</InlineButton>
       </p>
       <p>added by {creator}</p>
       {own && <Button onClick={handleRemove}>remove</Button>}
       <SubTitle2>comments</SubTitle2>
       <CommentForm addComment={addComment} blogId={blog.id} />
-      <ul>
-        {blog.comments.map((comment, index) => (
-          <li key={index}>{comment}</li>
-        ))}
-      </ul>
+      {blog.comments && (
+        <ul>
+          {blog.comments.map((comment, index) => (
+            <li key={index}>{comment}</li>
+          ))}
+        </ul>
+      )}
     </>
   )
 }
