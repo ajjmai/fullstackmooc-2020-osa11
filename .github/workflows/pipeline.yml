@@ -19,5 +19,8 @@ jobs:
         run: yarn lint
       - name: test
         run: yarn test
+        env:
+          TEST_MONGODB_URI: ${{secrets.TEST_MONGODB_URI}}
+          SECRET: ${{secrets.SECRET}}
       - name: test-ui
         run: yarn test:ui
