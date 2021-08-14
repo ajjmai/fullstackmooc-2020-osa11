@@ -12,7 +12,7 @@
     "lint": "eslint './**/*.{js,jsx}'",
     "lint:ui": "cd client && yarn lint",
     "start:test": "NODE_ENV=test node index.js",
-    "test:e2e": "cd client && cypress run",
+    "test:e2e": "cd client && yarn cypress run",
     "build:ui": "rm -rf build && cd client && yarn run build --prod && cp -r build ../",
     "deploy": "git push heroku main",
     "deploy:full": "yarn run build:ui && git add . && git commit -m uibuild && git push && yarn run deploy",
