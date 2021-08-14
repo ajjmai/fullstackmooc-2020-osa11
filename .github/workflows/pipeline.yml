@@ -54,11 +54,26 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
           RELEASE_BRANCHES: main
-      - name: slack notification
+      - name: slack notification success
         uses: 8398a7/action-slack@v3
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') && success() }}
+        with:
+          status: custom
+          fields: commit,repo,author,took
+          custom_payload: |
+            {
+              attachments: [{
+                color: 'good',
+                text: `new commit(s)(${process.env.AS_COMMIT}) pushed to ${process.env.AS_REPO} by ${process.env.AS_AUTHOR}\n${{ job.status }} in ${process.env.AS_TOOK}`,
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: slack notification failure
+        uses: 8398a7/action-slack@v3
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') && failure() }}
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,took
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: ${{ success() || failure() }}
