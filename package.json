@@ -9,7 +9,7 @@
     "dev": "NODE_ENV=development nodemon index.js",
     "test": "NODE_ENV=test jest --verbose --runInBand ./tests",
     "test:ui": "cd client && yarn test:nowatch",
-    "lint": "eslint .",
+    "lint": "eslint './**/*.{js,jsx}'",
     "lint:ui": "cd client && yarn lint",
     "start:test": "NODE_ENV=test node index.js",
     "test:e2e": "cd client && cypress run",
